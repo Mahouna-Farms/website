@@ -125,7 +125,7 @@ function handleScroll(event) {
 }
 
 function observeHeroAnimation(element) {
-  const hero = document.querySelector("#hero");
+  const hero = document.querySelector("#grass");
   const elementBottom = element.getBoundingClientRect().bottom;
 
   const observer = new IntersectionObserver(
