@@ -32,8 +32,23 @@ const statsObserver = new IntersectionObserver(
 
 statsObserver.observe(stats);
 
+let previousScrollLeft = statsObserver.scrollLeft;
+
+stats.addEventListener("touchmove", (e) => {
+  const currentScrollLeft = stats.scrollLeft;
+
+  if (currentScrollLeft > previousScrollLeft) {
+    console.log("Scrolling to the right");
+  } else if (currentScrollLeft < previousScrollLeft) {
+    console.log("Scrolling to the left");
+  } else {
+    console.log("Not scrolling");
+  }
+
+  previousScrollLeft = currentScrollLeft;
+});
+
 window.addEventListener("wheel", handleScroll, { passive: false });
-window.addEventListener("touchmove", handleScroll, { passive: false });
 window.addEventListener("scroll", handleScroll, { passive: false });
 
 function handleScroll(event) {
@@ -51,11 +66,6 @@ function handleScroll(event) {
       return;
     }
     scrollDirection = event.deltaY > 0 ? "down" : "up";
-  } else if (event.type === "touchmove") {
-    const touch = event.touches[0];
-    const currentTouchY = touch.clientY;
-    scrollDirection = currentTouchY < previousTouchY ? "down" : "up";
-    previousTouchY = currentTouchY;
   } else if (event.type === "scroll") {
     const currentScrollPosition = window.scrollY;
     scrollDirection =
@@ -126,7 +136,8 @@ function handleScroll(event) {
 
 function observeHeroAnimation(element) {
   const hero = document.querySelector("#grass");
-  const elementBottom = element.getBoundingClientRect().bottom;
+  const offset = 100;
+  const elementBottom = element.getBoundingClientRect().bottom + offset;
 
   const observer = new IntersectionObserver(
     (entries) => {

@@ -271,6 +271,7 @@ button {
   z-index: 10;
   margin-top: 3rem; /* 48px */
   position: relative;
+  display: flex;
 }
 
 #stats-countries {
@@ -280,6 +281,14 @@ button {
   justify-content: space-between;
   height: 450px;
   z-index: 10;
+}
+
+#stats-facts {
+  width: 526px;
+}
+
+#stats-facts div[class*="title"] {
+  display: none;
 }
 
 #impact-statement {
@@ -473,6 +482,7 @@ button {
   left: 0;
   height: 100%;
   justify-content: space-between;
+  width: 526px;
 }
 
 .stats-display > div > p:nth-child(2) {
@@ -530,6 +540,81 @@ button {
   padding-right: 3rem; /* 48px */
   text-align: center; /* Center the text inside the button */
   white-space: nowrap; /* Prevent text from wrapping */
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .title80 {
+    font-size: var(--fontsizeTitle40);
+    line-height: 48px;
+  }
+
+  .title40 {
+    font-size: 24px;
+    line-height: 29px;
+  }
+
+  .title56 {
+    font-size: var(--fontsizeTitle40);
+    line-height: 48px;
+  }
+
+  .paragraph20 {
+    font-size: 18px;
+    line-height: 32px;
+  }
+
+  #hero {
+    height: 640px;
+  }
+
+  #tagline {
+    top: 177px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  #nav-items div {
+    display: none;
+  }
+
+  #logo {
+    left: 1rem;
+  }
+
+  #stats {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    flex-wrap: nowrap;
+  }
+
+  #stats-countries {
+    display: none;
+  }
+
+  #stats-facts {
+    width: 100vw;
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding-right: 159px;
+  }
+
+  #stats-facts div[class*="title"] {
+    display: inline-block;
+  }
+
+  .stats-display {
+    gap: 2rem;
+    position: relative;
+    width: 318.33px;
+    flex: 0 0 auto;
+  }
+
+  .section {
+    padding-left: 48px;
+  }
 }
 
 /* Utitlity Classes */
@@ -591,6 +676,12 @@ button {
 
 .bg-green {
   background-color: #348714;
+}
+
+@media (max-width: 768px) {
+  .md-flex {
+    display: flex;
+  }
 }
 
 /* Animations */
