@@ -9,7 +9,7 @@ let previousScrollPosition = 0; // Initialize with a default value
 previousScrollPosition = window.scrollY;
 const nav = document.getElementById("nav");
 const tagline = document.getElementById("tagline");
-const stats = document.getElementById("stats");
+const stats = document.getElementById("stats-facts");
 
 observeHeroAnimation(nav);
 observeHeroAnimation(tagline);
@@ -30,24 +30,35 @@ const statsObserver = new IntersectionObserver(
   }
 );
 
-statsObserver.observe(stats);
+const totalScrollWidth = stats.scrollWidth - stats.clientWidth;
 
-let previousScrollLeft = statsObserver.scrollLeft;
+let startX = 0;
+let currentScrollLeft = 0;
 
-stats.addEventListener("touchmove", (e) => {
-  const currentScrollLeft = stats.scrollLeft;
-
-  if (currentScrollLeft > previousScrollLeft) {
-    console.log("Scrolling to the right");
-  } else if (currentScrollLeft < previousScrollLeft) {
-    console.log("Scrolling to the left");
-  } else {
-    console.log("Not scrolling");
-  }
-
-  previousScrollLeft = currentScrollLeft;
+stats.addEventListener("touchstart", (event) => {
+  startX = event.touches[0].clientX;
+  currentScrollLeft = stats.scrollLeft;
 });
 
+stats.addEventListener("touchmove", (event) => {
+  const touch = event.touches[0];
+  const deltaX = touch.clientX - startX;
+  stats.scrollLeft = currentScrollLeft - deltaX;
+
+  console.log(stats.scrollLeft);
+  console.log("deltaX", deltaX);
+
+  const scrollLeft = stats.scrollLeft;
+  const scrollPercentage = (scrollLeft / totalScrollWidth) * 100;
+
+  if (scrollPercentage >= 33 && scrollPercentage < 66) {
+    console.log("33-66");
+  } else if (scrollPercentage >= 66) {
+    console.log("66-100");
+  }
+});
+
+statsObserver.observe(stats);
 window.addEventListener("wheel", handleScroll, { passive: false });
 window.addEventListener("scroll", handleScroll, { passive: false });
 
