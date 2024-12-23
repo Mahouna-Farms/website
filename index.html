@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Mahouna Farms</title>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' http://127.0.0.1:5500;
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+      font-src 'self' 'unsafe-inline' https://fonts.gstatic.com;
+    "
+    />
     <link rel="stylesheet" href="./style.css" />
     <link rel="icon" href="./favicon.ico" type="image/x-icon" />
   </head>
@@ -47,7 +56,7 @@
 
     <div id="content">
       <div id="top-content">
-        <div id="leafs">
+        <div id="leafs" class="md-hidden">
           <img src="static/leafs.png" />
         </div>
         <section class="section" id="stats">
@@ -108,8 +117,7 @@
               </div>
               <div>
                 <p class="title40">
-                  Maize, Soybean, Rice, Cowpea, Pineapple, Cassava, Yam, Mango,
-                  and Peanut
+                  Maize, Soybean, Rice, Cowpea, Pineapple, Cassava, Yam, Mangoes
                 </p>
                 <p>Crop being farmed</p>
               </div>
@@ -137,16 +145,20 @@
             </div>
           </div>
         </section>
-        <section class="mission" id="mission">
+        <section class="mission first-mission">
           <div class="part title32">
-            Our mission is to empower smallholder farmers, revolutionize
-            agriculture in Africa by combining traditional knowledge with the
-            latest technological advances.
+            <p>
+              Our mission is to empower smallholder farmers, revolutionize
+              agriculture in Africa by combining traditional knowledge with the
+              latest technological advances.
+            </p>
           </div>
           <div class="part">
             <img
               src="static/illustrations/illustration_1.png"
               alt="Farmer illustration"
+              ,
+              class="illustration"
             />
           </div>
         </section>
@@ -155,6 +167,7 @@
             <img
               src="static/illustrations/illustration_2.png"
               alt="Farmer illustration"
+              class="illustration"
             />
           </div>
           <div class="part title32">
@@ -164,10 +177,12 @@
           </div>
         </section>
       </div>
-      <section id="impact" class="section-full">
+      <section id="impact">
         <div id="impact-statement">
           <div class="part-half">
-            <h2 class="title80 my-14">How do we deliver impact?</h2>
+            <h2 class="title80 my-14 md-mt-14 md-mb-8">
+              How do we deliver impact?
+            </h2>
             <div class="paragraphs">
               <p class="paragraph20">
                 We are challenging the status quo by developing and deploying
@@ -190,7 +205,11 @@
         />
       </section>
       <section class="section">
-        <img src="static/sun_bg.svg" alt="sun background" class="sun -z-10" />
+        <img
+          src="static/sun_bg.svg"
+          alt="sun background"
+          class="sun -z-10 md-hidden"
+        />
         <h2 class="center title80">Our farmers' benefits</h2>
         <div id="benefits">
           <div>
@@ -252,7 +271,7 @@
             carefully crafted with a commitment to excellence, using only the
             finest materials and adhering to rigorous quality control processes.
           </div>
-          <div>
+          <div class="md-hidden">
             Our focus on top quality ensures that every item not only satisfies
             but surpasses customer expectations. From sourcing to manufacturing,
             every step of our production process is guided by a dedication to
@@ -283,11 +302,24 @@
             <p class="paragraph20">150,000 tons/year</p>
           </div>
         </div>
+        <div class="hidden md-display paragraph20">
+          Our focus on top quality ensures that every item not only satisfies
+          but surpasses customer expectations. From sourcing to manufacturing,
+          every step of our production process is guided by a dedication to
+          sustainability, safety, and global best practices, guaranteeing goods
+          that are reliable, ethically produced, and of the highest standard.
+        </div>
       </section>
       <section id="mfarms-plus">
         <img
           src="static/world.png"
           alt="Delivery World: 30% USA, 50% Europe and 20% Other"
+          class="md-hidden"
+        />
+        <img
+          src="static/world_mobile.png"
+          alt="Delivery World: 30% USA, 50% Europe and 20% Other"
+          class="hidden md-display"
         />
         <div class="section flex" id="mfarms-plus-content">
           <div>

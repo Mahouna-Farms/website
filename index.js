@@ -10,10 +10,52 @@ previousScrollPosition = window.scrollY;
 const nav = document.getElementById("nav");
 const tagline = document.getElementById("tagline");
 const stats = document.getElementById("stats-facts");
+const sun = document.getElementById("sun-top");
 
 observeHeroAnimation(nav);
 observeHeroAnimation(tagline);
 
+// Horizontal scroll oberver stats
+const scrollContainer = document.getElementById("stats-facts");
+const observerOptions = {
+  root: scrollContainer,
+  rootMargin: "0px",
+  threshold: [1.0],
+};
+
+const observerCallback = (entries) => {
+  if (window.innerWidth > 768) {
+    return;
+  }
+  entries.forEach((entry) => {
+    const country = entry.target.id.split("-")[0];
+    const countryIndex = countries.indexOf(country);
+    if (entry.isIntersecting) {
+      // Slides in back from the left
+      if (countryIndex < currentCountryIndex) {
+        toggleCountryTitle(countryIndex);
+        currentCountryIndex = countryIndex;
+      }
+    } else {
+      // Slides out to the left
+      if (
+        countryIndex == currentCountryIndex &&
+        countryIndex < countries.length - 1
+      ) {
+        toggleCountryTitle(countryIndex + 1);
+        currentCountryIndex = countryIndex + 1;
+      }
+    }
+  });
+};
+
+const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+document.querySelectorAll(".stats-display").forEach((item) => {
+  observer.observe(item);
+});
+
+// Only when the stats section is fully visible we want to listen to scroll events
 const statsObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -31,38 +73,40 @@ const statsObserver = new IntersectionObserver(
 );
 
 const totalScrollWidth = stats.scrollWidth - stats.clientWidth;
-
-let startX = 0;
-let currentScrollLeft = 0;
-
-stats.addEventListener("touchstart", (event) => {
-  startX = event.touches[0].clientX;
-  currentScrollLeft = stats.scrollLeft;
-});
-
-stats.addEventListener("touchmove", (event) => {
-  const touch = event.touches[0];
-  const deltaX = touch.clientX - startX;
-  stats.scrollLeft = currentScrollLeft - deltaX;
-
-  console.log(stats.scrollLeft);
-  console.log("deltaX", deltaX);
-
-  const scrollLeft = stats.scrollLeft;
-  const scrollPercentage = (scrollLeft / totalScrollWidth) * 100;
-
-  if (scrollPercentage >= 33 && scrollPercentage < 66) {
-    console.log("33-66");
-  } else if (scrollPercentage >= 66) {
-    console.log("66-100");
-  }
-});
-
 statsObserver.observe(stats);
 window.addEventListener("wheel", handleScroll, { passive: false });
 window.addEventListener("scroll", handleScroll, { passive: false });
 
+function toggleCountryTitle(newCountryIndex) {
+  sunRotationDegrees =
+    newCountryIndex > currentCountryIndex
+      ? sunRotationDegrees + 20
+      : sunRotationDegrees - 20;
+  sun.style.transition = "transform 1s ease-in-out";
+  sun.style.transform = `translate(15%, -50%) rotate(${sunRotationDegrees}deg)`;
+  const currentCountry = countries[currentCountryIndex];
+  const nextCountry = countries[newCountryIndex];
+
+  const currentElement = document.querySelector(
+    `.stats-display #${currentCountry}`
+  );
+  const nextElement = document.querySelector(`.stats-display #${nextCountry}`);
+
+  currentElement.classList.remove("title80");
+  currentElement.classList.add("title56", "light");
+  nextElement.classList.remove("title56", "light");
+  nextElement.classList.add(
+    "transition-all",
+    "title80",
+    "ease-in",
+    "duration-500"
+  );
+}
+
 function handleScroll(event) {
+  if (window.innerWidth <= 768) {
+    return;
+  }
   if (isAnimating) {
     event.preventDefault();
     return;
