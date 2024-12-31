@@ -59,7 +59,7 @@
         <div id="leafs" class="md-hidden">
           <img src="static/leafs.png" />
         </div>
-        <section class="section" id="stats">
+        <section class="section md-p-0" id="stats">
           <img
             id="sun-top"
             src="static/sun_bg.svg"
@@ -324,7 +324,10 @@
         <div class="section flex" id="mfarms-plus-content">
           <div>
             <div class="paragraphs">
-              <h2 class="title80">MFarms Plus our Product</h2>
+              <h2 class="title80">
+                MFarms Plus <br />
+                our product
+              </h2>
               <p class="paragraph20">
                 As smallholder farmers and key players in food exportation from
                 the West African region, we have long-standing partnerships with
@@ -422,16 +425,20 @@
         </div>
       </section>
       <section class="section flex" id="about-us">
-        <img src="static/sun_bg.svg" alt="sun background" class="sun -z-10" />
+        <img
+          src="static/sun_bg.svg"
+          alt="sun background"
+          class="sun -z-10 md-hidden"
+        />
         <div class="paragraphs-small paragraph20 part">
-          <h2 class="title80 mb-14">About us</h2>
+          <h2 class="title80">About us</h2>
           <div>
             “We are a fourth-generation family-owned social enterprise, led by
             brothers Sam and Adam, dedicated to improving smallholder farmers’
             livelihoods in Africa. By blending age-old traditions with modern
             technology, we create sustainable agricultural solutions.
           </div>
-          <div>
+          <div class="md-hidden">
             For over 80 years, our family has produced and traded food across
             the region. Today, with the agriculture sector facing multiple
             challenges, we are committed to using innovative technology to drive
@@ -451,6 +458,12 @@
             <p class="paragraph20 center">Head of Operations</p>
           </div>
         </div>
+        <div class="hidden md-display paragraph20">
+          For over 80 years, our family has produced and traded food across the
+          region. Today, with the agriculture sector facing multiple challenges,
+          we are committed to using innovative technology to drive meaningful
+          change and secure a sustainable future for African agriculture.”
+        </div>
       </section>
       <section id="contact">
         <div class="section flex">
@@ -461,9 +474,7 @@
               Feel free to reach out to us to learn more about our company, our
               projects, or to explore partnership opportunities.
             </p>
-            <button class="button paragraph24 self-align-start">
-              Write to us
-            </button>
+            <button class="button paragraph24">Write to us</button>
           </div>
           <div id="contact-means">
             <div class="flex items-center gap-12">
@@ -491,7 +502,7 @@
             </div>
           </div>
         </div>
-        <img src="static/footer.svg" alt="Footer" />
+        <img src="static/footer.svg" alt="Footer" id="footer" />
       </section>
     </div>
     <script src="index.js"></script>

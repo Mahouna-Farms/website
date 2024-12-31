@@ -83,7 +83,7 @@ function toggleCountryTitle(newCountryIndex) {
       ? sunRotationDegrees + 20
       : sunRotationDegrees - 20;
   sun.style.transition = "transform 1s ease-in-out";
-  sun.style.transform = `translate(15%, -50%) rotate(${sunRotationDegrees}deg)`;
+  sun.style.transform = `translate(-15%, -50%) rotate(${sunRotationDegrees}deg)`;
   const currentCountry = countries[currentCountryIndex];
   const nextCountry = countries[newCountryIndex];
 
