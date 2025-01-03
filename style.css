@@ -830,6 +830,25 @@ img#footer {
     top: 100px;
   }
 
+  #stats-facts div[class*="title"] {
+    display: none;
+  }
+
+  #stats-countries {
+    display: block;
+    height: 100%;
+    padding-left: 24px;
+  }
+
+  #stats-countries > div:nth-child(1) {
+    display: flex;
+    gap: 16px;
+  }
+
+  #stats-countries > div:nth-child(2) {
+    display: none;
+  }
+
   #impact-statement {
     padding: 0 24px 0 24px;
   }

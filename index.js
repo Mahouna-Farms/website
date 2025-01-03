@@ -1,3 +1,6 @@
+const widthMd = 768;
+const widthSM = 360;
+
 const countries = ["senegal", "nigeria", "drc"];
 let currentCountryIndex = 0;
 let isAnimating = false;
@@ -24,7 +27,7 @@ const observerOptions = {
 };
 
 const observerCallback = (entries) => {
-  if (window.innerWidth > 768) {
+  if (window.innerWidth > widthMd) {
     return;
   }
   entries.forEach((entry) => {
@@ -104,7 +107,7 @@ function toggleCountryTitle(newCountryIndex) {
 }
 
 function handleScroll(event) {
-  if (window.innerWidth <= 768) {
+  if (window.innerWidth <= widthMd) {
     return;
   }
   if (isAnimating) {
@@ -191,7 +194,7 @@ function handleScroll(event) {
 
 function observeHeroAnimation(element) {
   const hero = document.querySelector("#grass");
-  const offset = 100;
+  const offset = window.innerWidth > widthMd ? 150 : 0;
   const elementBottom = element.getBoundingClientRect().bottom + offset;
 
   const observer = new IntersectionObserver(
