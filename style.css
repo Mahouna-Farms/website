@@ -847,10 +847,6 @@ img#footer {
     display: none;
   }
 
-  #impact-statement {
-    padding: 0 24px 0 24px;
-  }
-
   #benefits {
     gap: 12px;
   }
@@ -858,10 +854,6 @@ img#footer {
   .padding {
     padding-left: 24px;
     padding-right: 24px;
-  }
-
-  .mission {
-    padding: 0 24px 0 24px;
   }
 
   .gallery {
