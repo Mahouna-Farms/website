@@ -1,5 +1,5 @@
 const widthMd = 768;
-const widthSM = 360;
+const widthSM = 480;
 
 const countries = ["senegal", "nigeria", "drc"];
 let currentCountryIndex = 0;
@@ -219,4 +219,60 @@ function observeHeroAnimation(element) {
   return () => {
     observer.disconnect();
   };
+}
+
+let swiper = null;
+
+function initSwiper() {
+  if (window.innerWidth <= widthSM) {
+    if (!swiper) {
+      swiper = new Swiper(".stats-swiper", {
+        on: {
+          slideChange: function () {
+            handleSlideChange(this.activeIndex);
+          },
+        },
+      });
+    }
+  } else if (swiper) {
+    swiper.destroy();
+    swiper = null;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  initSwiper();
+  window.addEventListener("resize", initSwiper);
+});
+
+function handleSlideChange(activeIndex) {
+  const countries = ["senegal", "nigeria", "drc"];
+  const currentCountry = countries[activeIndex];
+  const sun = document.getElementById("sun-top");
+
+  // Update sun rotation based on the active index
+  const sunRotationDegrees = activeIndex * 20; // Adjust the rotation degree as needed
+  sun.style.transition = "transform 1s ease-in-out";
+  sun.style.transform = `translate(-15%, -50%) rotate(${sunRotationDegrees}deg)`;
+
+  // Update country titles
+  countries.forEach((country, index) => {
+    const element = document.querySelector(`#stats-countries #${country}`);
+    if (index !== activeIndex) {
+      element.classList.remove("title80");
+      element.classList.add("title56", "light");
+      if (index < activeIndex) {
+        element.classList.add("hidden");
+      }
+    }
+    if (index === activeIndex) {
+      element.classList.remove("title56", "light", "hidden");
+      element.classList.add(
+        "transition-all",
+        "title80",
+        "ease-in",
+        "duration-1000"
+      );
+    }
+  });
 }
