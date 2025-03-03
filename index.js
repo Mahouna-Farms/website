@@ -282,8 +282,6 @@ class ContactFormManager {
       return;
     }
 
-    console.log("Form submitted");
-
     const formData = {
       name: this.form.name.value,
       email: this.form.email.value,
@@ -292,12 +290,10 @@ class ContactFormManager {
 
     try {
       await this.submitForm(formData);
-      alert("Message sent successfully!");
       this.form.reset();
       this.closeModal();
     } catch (error) {
-      console.error("Form submission error:", error);
-      alert("Error sending message. Please try again.");
+      this.closeModal();
     }
   }
 
